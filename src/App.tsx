@@ -1,5 +1,24 @@
-import Button from "@suid/material/Button";
+import { Router, useRoutes } from '@solidjs/router';
+import { ThemeProvider } from '@suid/material/styles';
+import { routes } from './app';
+import {SideBar} from './components';
+import theme from './theme';
 
-export default function App() {
-  return <Button variant="contained">Hello world</Button>;
+function App() {
+  const Route = useRoutes(routes);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div style={{ display: 'flex' }}>
+          <SideBar />
+          <main>
+            <Route />
+          </main>
+        </div>
+      </Router>
+    </ThemeProvider>    
+  );
 }
+
+export default App;
